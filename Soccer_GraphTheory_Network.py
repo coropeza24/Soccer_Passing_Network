@@ -1,14 +1,14 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-# Step 1: Define players in a 4-3-3 formation
+''' Step 1: Define players in a 4-3-3 formation '''
 players = [
     "GK", "LB", "CB1", "CB2", "RB",
     "LM", "CM", "RM",
     "LW", "ST", "RW"
 ]
 
-# Step 2: Define possible passes (edges)
+''' Step 2: Define possible passes (edges) '''
 passes = [
     ("GK", "CB1"), ("GK", "CB2"),
     ("CB1", "LB"), ("CB2", "RB"),
@@ -20,22 +20,22 @@ passes = [
     ("LW", "ST"), ("RW", "ST")
 ]
 
-# Step 3: Create graph
+''' Step 3: Create graph '''
 G = nx.Graph()
 G.add_nodes_from(players)
 G.add_edges_from(passes)
 
-# Step 4: Calculate number of passing options
+''' Step 4: Calculate number of passing options '''
 print("Passing options per player:")
 for player in G.nodes:
     print(f"{player}: {len(list(G.neighbors(player)))} options")
 
-# Step 5: Calculate centrality (who connects the most)
+''' Step 5: Calculate centrality (who connects the most) '''
 centrality = nx.degree_centrality(G)
 most_influential = max(centrality, key=centrality.get)
 print(f"\nMost influential player (based on centrality): {most_influential}")
 
-# Step 6: Visualize formation
+''' Step 6: Visualize formation '''
 pos = {
     "GK": (0, 0),
     "LB": (-3, 2), "CB1": (-1, 2), "CB2": (1, 2), "RB": (3, 2),
